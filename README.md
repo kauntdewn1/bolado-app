@@ -51,4 +51,4 @@ npm install
 - Documente lógicas complexas.
 
 ## Licença
-MIT 
+MIT # micoleao-app
