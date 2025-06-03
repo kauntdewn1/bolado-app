@@ -1,0 +1,29 @@
+@import './styles/wordpress.css';
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face {
+  font-family: 'FKGrotesk';
+  src: url('https://res.cloudinary.com/di7ub5dqe/raw/upload/v1748934754/fonts/FKGrotesk-Regular_web.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'FKGrotesk';
+  src: url('https://res.cloudinary.com/di7ub5dqe/raw/upload/v1748934754/fonts/FKGrotesk-Medium_web.woff2') format('woff2');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'FKGrotesk';
+  src: url('https://res.cloudinary.com/di7ub5dqe/raw/upload/v1748934754/fonts/FKGrotesk-Bold_web.woff2') format('woff2');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
