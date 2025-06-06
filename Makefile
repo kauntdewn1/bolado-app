@@ -1,17 +1,17 @@
 install:
-	npm install
+	yarn install
 
 dev:
-	npm run dev
+	yarn dev
 
 build:
-	npm run build
+	yarn build
 
 preview:
-	npm run preview
+	yarn preview
 
 lint:
-	npm run lint
+	yarn lint
 
 clean:
 	rm -rf dist 

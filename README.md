@@ -15,7 +15,7 @@ Plataforma para apresentar o personagem Mico Leão Bolado, suas coleções e eve
 
 ## Instalação
 ```bash
-git clone <repo-url>
+git clone https://github.com/kauntdewn1/bolado-app.git
 cd micoleao-appproject
 npm install
 ```
