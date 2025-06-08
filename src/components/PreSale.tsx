@@ -99,7 +99,7 @@ const PreSale: React.FC = () => {
         
         <div className="flex justify-center items-center max-w-6xl mx-auto">
           <PreSaleCard 
-            title="Fase 1"
+            title="Mico Leão Bolado™"
             icon={<Flame size={48} className="text-red-500" />}
             price="R$ 1.497"
             benefits={[

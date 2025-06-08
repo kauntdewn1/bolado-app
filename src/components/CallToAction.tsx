@@ -96,7 +96,7 @@ const CallToAction: React.FC = () => {
                 </svg>
                 Entrar com Google
               </button>
-              <form onSubmit={e => { e.preventDefault(); handleEmailAuth(); }} className="w-full flex flex-col gap-2 mt-4">
+              <form onSubmit={(e: { preventDefault: () => void; }) => { e.preventDefault(); handleEmailAuth(); }} className="w-full flex flex-col gap-2 mt-4">
                 <input 
                   type="email" 
                   id="email"

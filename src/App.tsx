@@ -11,17 +11,20 @@ import CallToAction from './components/CallToAction';
 import Termos from './components/Termos';
 import PoliticaPrivacidade from './components/PoliticaPrivacidade';
 import PoliticaTrocas from './components/PoliticaTrocas';
+import LandingPage from './components/LandingPage';
 
 
 const App: React.FC = () => {
-  const preSaleSectionRef = useRef<HTMLElement>(null);
+  const preSaleSectionRef = useRef<HTMLElement | null>(null);
   const [showUrgencyContainer, setShowUrgencyContainer] = useState(false);
   const lastScrollY = useRef(0);
 
   useEffect(() => {
     const handleScroll = () => {
       if (preSaleSectionRef.current) {
-        const preSaleOffsetTop = preSaleSectionRef.current.offsetTop;
+        // Ensure preSaleSectionRef.current is not null before accessing offsetTop
+        const preSaleElement = preSaleSectionRef.current as HTMLElement;
+        const preSaleOffsetTop = preSaleElement.offsetTop;
         const scrollPosition = window.scrollY;
         // You might want to add a small offset here if the section starts right at the top
         // const threshold = preSaleOffsetTop - 100;
@@ -51,15 +54,40 @@ const App: React.FC = () => {
   return (
     <div className="min-h-screen bg-[var(--color-bg)] text-[var(--color-text)] font-body antialiased">
       <Router>
-        <Header />
-        <Routes>
-          <Route path="/" element={<section ref={preSaleSectionRef}><PreSale /><ManifestoSection /><Gallery /><CallToAction /><Hero /></section>} />
- <Route path="/termos" element={<Termos />} />
- <Route path="/privacidade" element={<PoliticaPrivacidade />} />
- <Route path="/trocas" element={<PoliticaTrocas />} />
- <Route path="/Manifesto" element={<ManifestoSection />} />
+ <Routes>
+ <Route path="/" element={<LandingPage />} />
+ <Route
+            path="/app"
+            element={
+              <>
+ <Header />
+ <section ref={preSaleSectionRef}>
+                  {/* Apply ref here */}
+                  {/* You might want to pass the ref down to PreSale if needed for scroll logic */}
+ <Hero /> {/* Moved Hero here */}
+ <PreSale />
+ <ManifestoSection />
+ <Gallery />
+ <CallToAction />
+ </section>
+ <Footer /> {/* Add Footer here */}
+              </>
+            }
+          />
+ <Route
+            path="/termos"
+            element={
+              <>
+ <Header />
+ <Termos />
+ <Footer /> {/* Add Footer here */}
+              </>
+            }
+          />
+          <Route path="/privacidade" element={<><Header /><PoliticaPrivacidade /><Footer /></>} /> {/* Add Footer here */}
+          <Route path="/trocas" element={<><Header /><PoliticaTrocas /><Footer /></>} /> {/* Add Footer here */}
+          <Route path="/Manifesto" element={<><Header /><ManifestoSection /><Footer /></>} /> {/* Add Footer here */}
  </Routes>
- <Footer />
       </Router>
       {showUrgencyContainer && (
         <div className="fixed bottom-4 right-4 bg-red-600 text-white p-4 rounded-lg shadow-lg z-50 flex items-start">
