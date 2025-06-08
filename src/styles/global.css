@@ -1,5 +1,6 @@
 /* -------- IMPORTAÇÃO DA FONTE (DEVE VIR PRIMEIRO) -------- */
 @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;700&display=swap');
+@import "@fontsource/space-grotesk";
 
 /* -------- Tailwind Core Directives -------- */
 @tailwind base;
