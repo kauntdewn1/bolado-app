@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import Header from './components/Header';
 import Hero from './components/Hero';
 import PreSale from './components/PreSale';
@@ -6,7 +6,7 @@ import Gallery from './components/Gallery';
 import CallToAction from './components/CallToAction';
 import Footer from './components/Footer';
 
-function App() {
+const App: React.FC = () => {
   return (
     <div className="font-sans antialiased">
       <Header />
@@ -19,6 +19,6 @@ function App() {
       <Footer />
     </div>
   );
-}
+};
 
 export default App;
