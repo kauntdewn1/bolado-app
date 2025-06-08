@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import './styles/global.css';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Header from './components/Header';
@@ -14,14 +14,23 @@ import PoliticaTrocas from './components/PoliticaTrocas';
 
 
 const App: React.FC = () => {
+  const preSaleSectionRef = useRef<HTMLElement>(null);
   const [showUrgencyContainer, setShowUrgencyContainer] = useState(false);
+  const lastScrollY = useRef(0);
 
   useEffect(() => {
     const handleScroll = () => {
-      const scrollPosition = window.scrollY;
-      const threshold = 200; // Adjust this value as needed
+      if (preSaleSectionRef.current) {
+        const preSaleOffsetTop = preSaleSectionRef.current.offsetTop;
+        const scrollPosition = window.scrollY;
+        // You might want to add a small offset here if the section starts right at the top
+        // const threshold = preSaleOffsetTop - 100;
 
-      setShowUrgencyContainer(scrollPosition > threshold);
+        const isScrollingDown = scrollPosition > lastScrollY.current;
+
+        setShowUrgencyContainer(isScrollingDown && scrollPosition >= preSaleOffsetTop);
+      }
+      lastScrollY.current = window.scrollY;
     };
 
     window.addEventListener('scroll', handleScroll);
@@ -35,17 +44,16 @@ const App: React.FC = () => {
 
     return () => {
       window.removeEventListener('scroll', handleScroll);
-      if (timer) clearTimeout(timer);
+      if (timer !== null) clearTimeout(timer);
     };
-  }, [showUrgencyContainer]); // Add showUrgencyContainer to the dependency array
+  }, [showUrgencyContainer]);
 
   return (
     <div className="min-h-screen bg-[var(--color-bg)] text-[var(--color-text)] font-body antialiased">
       <Router>
         <Header />
         <Routes>
-          <Route path="/" element={
- <><PreSale /><ManifestoSection /><Gallery /><CallToAction /><Hero /></>} />
+          <Route path="/" element={<section ref={preSaleSectionRef}><PreSale /><ManifestoSection /><Gallery /><CallToAction /><Hero /></section>} />
  <Route path="/termos" element={<Termos />} />
  <Route path="/privacidade" element={<PoliticaPrivacidade />} />
  <Route path="/trocas" element={<PoliticaTrocas />} />

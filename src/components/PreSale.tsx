@@ -57,6 +57,38 @@ const PreSaleCard = ({
 };
 
 const PreSale: React.FC = () => {
+  const handlePurchaseClick = async () => {
+    try {
+      // You might want to get email and name from user authentication state or a form
+      // For now, using dummy data or potentially getting user from auth context if available
+      const dummyUserData = {
+        email: 'test@example.com', // Replace with actual user email
+        nome: 'Test User', // Replace with actual user name
+        // value: 149700 // This is already defaulted in the API, but you can pass explicitly if needed
+      };
+
+      const response = await fetch('/api/OpenPix/create-charge', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(dummyUserData),
+      });
+
+      const data = await response.json();
+
+      if (response.ok && data.paymentLinkUrl) {
+        window.location.href = data.paymentLinkUrl; // Redirect to OpenPix payment page
+      } else {
+        console.error('Failed to create charge:', data);
+        alert('Não foi possível gerar a cobrança. Tente novamente.'); // Basic error handling
+      }
+    } catch (error) {
+      console.error('Error during purchase process:', error);
+      alert('Ocorreu um erro. Tente novamente.'); // Basic error handling
+    }
+  };
+
   return (
     <section id="prelaunch" className="py-32 px-6 has-cool-to-warm-spectrum-gradient-background">
       <div className="container mx-auto">
@@ -87,6 +119,16 @@ const PreSale: React.FC = () => {
             </ul>
           </div>
         </div>
+
+        <div className="mt-12 text-center">
+ <button 
+            className="inline-block px-8 py-4 text-lg font-bold text-black bg-yellow-400 rounded-full shadow-lg hover:bg-yellow-300 transition-colors duration-300"
+            onClick={handlePurchaseClick}
+          >
+            [ GARANTIR O MEU MICO LEÃO BOLADO AGORA ]
+ </button>
+        </div>
+
       </div>
     </section>
   );

@@ -3,7 +3,7 @@ export default async function handler(req, res) {
       return res.status(405).json({ error: 'Método não permitido' });
     }
   
-    const { email, nome, value = 2700, paymentTypes = ['PIX', 'CREDIT_CARD'] } = req.body;
+    const { email, nome, value = 149700, paymentTypes = ['PIX', 'CREDIT_CARD'] } = req.body;
   
     try {
       if (!process.env.OPENPIX_API_KEY) {
