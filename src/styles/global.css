@@ -6,28 +6,6 @@
 @tailwind components;
 @tailwind utilities;
 
-/* -------- Fontes Customizadas -------- */
-@font-face {
-  font-family: 'Space Grotesk';
-  src: url('/fonts/SpaceGrotesk-Regular.otf') format('opentype');
-  font-weight: 400;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: 'Space Grotesk';
-  src: url('/fonts/SpaceGrotesk-SemiBold.otf') format('opentype');
-  font-weight: 600;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: 'Space Grotesk';
-  src: url('/fonts/SpaceGrotesk-Bold.otf') format('opentype');
-  font-weight: 700;
-  font-display: swap;
-}
-
 /* -------- Variáveis Customizadas -------- */
 :root {
   --font-body: 'Space Grotesk', sans-serif;
