@@ -10,14 +10,13 @@ import {
   where, 
   orderBy, 
   limit,
-  Timestamp,
-  DocumentData
+  Timestamp
 } from 'firebase/firestore';
 import { db } from '../config/firebase';
 import { User, Product, Order, Newsletter } from '../types/firestore';
 
 // Funções auxiliares
-const getTimestamp = () => Timestamp.now().toISOString();
+const getTimestamp = () => Timestamp.now().toString();
 
 // Operações de Usuário
 export const userService = {

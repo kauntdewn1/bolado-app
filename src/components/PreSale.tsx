@@ -1,15 +1,25 @@
 import React from 'react';
 import { Zap, Flame, Target } from 'lucide-react';
 
-const PreSaleCard: React.FC<{
+interface PreSaleCardProps {
   title: string;
-  icon: React.ReactNode;
+  icon: JSX.Element;
   price: string;
   benefits: string[];
   note: string;
   limited?: string;
   highlight?: boolean;
-}> = ({ title, icon, price, benefits, note, limited, highlight }) => {
+}
+
+const PreSaleCard: React.FC<PreSaleCardProps> = ({
+  title,
+  icon,
+  price,
+  benefits,
+  note,
+  limited,
+  highlight
+}) => {
   return (
     <div 
       className={`relative overflow-hidden rounded-[32px] backdrop-blur-sm transition-all duration-500 hover:scale-105 shadow-[0_8px_32px_rgba(0,0,0,0.1)] ${
