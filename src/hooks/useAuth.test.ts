@@ -1,8 +1,15 @@
 import { renderHook, act } from '@testing-library/react';
 import { useAuth } from './useAuth';
 import { auth, provider } from '../lib/firebase';
-import { signInWithPopup, signOut, createUserWithEmailAndPassword } from 'firebase/auth';
+import { signInWithPopup, signOut, createUserWithEmailAndPassword, User } from 'firebase/auth';
 import { setDoc } from 'firebase/firestore';
+
+interface MockUser {
+  uid: string;
+  displayName?: string;
+  email: string;
+  photoURL?: string;
+}
 
 // Mock Firebase Auth
 jest.mock('firebase/auth', () => ({
@@ -12,7 +19,7 @@ jest.mock('firebase/auth', () => ({
   signInWithEmailAndPassword: jest.fn(),
   getAuth: jest.fn(() => ({
     currentUser: null,
-    onAuthStateChanged: jest.fn((callback) => {
+    onAuthStateChanged: jest.fn((callback: (user: User | null) => void) => {
       callback(null);
       return jest.fn();
     }),
@@ -38,7 +45,7 @@ describe('useAuth', () => {
   });
 
   it('should handle Google login successfully', async () => {
-    const mockUser = {
+    const mockUser: MockUser = {
       uid: '123',
       displayName: 'Test User',
       email: 'test@example.com',
@@ -72,7 +79,7 @@ describe('useAuth', () => {
   });
 
   it('should handle email registration successfully', async () => {
-    const mockUser = {
+    const mockUser: MockUser = {
       uid: '123',
       email: 'test@example.com',
     };

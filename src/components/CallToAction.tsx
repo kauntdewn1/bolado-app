@@ -96,23 +96,29 @@ const CallToAction: React.FC = () => {
                 </svg>
                 Entrar com Google
               </button>
-              <div className="w-full flex flex-col gap-2 mt-4">
+              <form onSubmit={e => { e.preventDefault(); handleEmailAuth(); }} className="w-full flex flex-col gap-2 mt-4">
                 <input 
                   type="email" 
+                  id="email"
+                  name="email"
                   placeholder="E-mail" 
                   value={email} 
                   onChange={handleEmailChange} 
                   className="w-full px-4 py-2 rounded text-black" 
+                  autoComplete="email"
                 />
                 <input 
                   type="password" 
+                  id="password"
+                  name="password"
                   placeholder="Senha" 
                   value={password} 
                   onChange={handlePasswordChange} 
                   className="w-full px-4 py-2 rounded text-black" 
+                  autoComplete="current-password"
                 />
                 <button 
-                  onClick={handleEmailAuth} 
+                  type="submit"
                   disabled={loading} 
                   className="w-full px-6 py-3 bg-white text-black text-lg font-bold rounded hover:bg-gray-200 transition-colors duration-300"
                 >
@@ -125,7 +131,7 @@ const CallToAction: React.FC = () => {
                 >
                   {isRegister ? 'Já tem conta? Entrar' : 'Não tem conta? Cadastre-se'}
                 </button>
-              </div>
+              </form>
             </div>
           )}
         </div>

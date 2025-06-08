@@ -1,0 +1,15 @@
+version: "3.9"
+
+services:
+  bolado-app:
+    image: node:24-alpine
+    container_name: bolado-dev
+    working_dir: /app
+    volumes:
+      - .:/app
+      - /app/node_modules
+    ports:
+      - "5173:5173"
+    command: sh -c "yarn && yarn dev --host"
+    env_file:
+      - .env.local
