@@ -1,5 +1,5 @@
 import React from 'react';
-import { Zap, Flame, Target } from 'lucide-react';
+import { Flame } from 'lucide-react';
 
 interface PreSaleCardProps {
   title: string;
@@ -11,7 +11,7 @@ interface PreSaleCardProps {
   highlight?: boolean;
 }
 
-const PreSaleCard: React.FC<PreSaleCardProps> = ({
+const PreSaleCard = ({
   title,
   icon,
   price,
@@ -19,7 +19,7 @@ const PreSaleCard: React.FC<PreSaleCardProps> = ({
   note,
   limited,
   highlight
-}) => {
+}: PreSaleCardProps) => {
   return (
     <div 
       className={`relative overflow-hidden rounded-[32px] backdrop-blur-sm transition-all duration-500 hover:scale-105 shadow-[0_8px_32px_rgba(0,0,0,0.1)] ${
@@ -76,25 +76,6 @@ const PreSale: React.FC = () => {
             note="Primeiros 200. Rápido no gatilho."
             limited="Limitado aos 200 primeiros"
             highlight={true}
-          />
-          
-          <PreSaleCard 
-            title="Fase 2"
-            icon={<Zap size={48} className="text-yellow-500" />}
-            price="R$ 1.997"
-            benefits={[
-              "+ 1 ingresso VIP"
-            ]}
-            note="Ainda dá tempo de ser raro."
-          />
-          
-          <PreSaleCard 
-            title="Fase 3"
-            icon={<Target size={48} className="text-blue-500" />}
-            price="R$ 2.497"
-            benefits={[]}
-            note="Última chance de ter um."
-            limited="Sujeito à disponibilidade"
           />
         </div>
       </div>

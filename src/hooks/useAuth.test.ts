@@ -1,8 +1,8 @@
 import { renderHook, act } from '@testing-library/react';
 import { useAuth } from './useAuth';
 import { auth, provider } from '../lib/firebase';
-import { signInWithPopup, signOut, createUserWithEmailAndPassword, signInWithEmailAndPassword } from 'firebase/auth';
-import { doc, setDoc } from 'firebase/firestore';
+import { signInWithPopup, signOut, createUserWithEmailAndPassword } from 'firebase/auth';
+import { setDoc } from 'firebase/firestore';
 
 // Mock Firebase Auth
 jest.mock('firebase/auth', () => ({
