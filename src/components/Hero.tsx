@@ -25,9 +25,9 @@ const Hero: React.FC = () => {
 
       <section className="w-full py-24 bg-black text-white">
         <div className="container mx-auto px-6 text-center">
-          <h2 className="text-5xl md:text-7xl font-bold mb-8">Mico Bolado.</h2>
+          <h2 className="text-5xl md:text-7xl font-bold mb-8">O Mico Leão Bolado™ chegou.</h2>
           <p className="text-lg md:text-xl text-gray-300 max-w-2xl mx-auto">
-            UM PERSONAGEM COLECIONAVEL LIMITADO SE DESTACA POR SUA IRREVERENCIA E SEU TEDIO
+          E o mundo não será mais o mesmo.
           </p>
         </div>
       </section>

@@ -7,7 +7,7 @@ const Footer: React.FC = () => {
         <div className="text-center">
           <div className="inline-block border-t-4 border-black w-12 mb-8"></div>
           <p className="uppercase text-xl font-bold mb-2">Mico Leão Bolado™</p>
-          <p className="text-gray-600 mb-12">Feito pra provocar. Não pra agradar.</p>
+          <p className="text-gray-600 mb-12">Quer saber o que vem depois? Só quem tiver o Mico vai descobrir.</p>
           
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-4xl mx-auto text-sm uppercase tracking-widest">
             <div className="text-left">
@@ -48,7 +48,7 @@ const Footer: React.FC = () => {
           </div>
           
           <div className="mt-16 pt-8 border-t border-gray-200">
-            <p className="text-xs text-gray-500">© 2025 Mico Leão Bolado. Todos os direitos reservados.</p>
+            <p className="text-xs text-gray-500">© 2025 Mico Leão Bolado™. Todos os direitos reservados.</p>
           </div>
         </div>
       </div>

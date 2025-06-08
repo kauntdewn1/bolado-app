@@ -10,14 +10,14 @@ const Termos: React.FC = () => {
         
         <div className="max-w-4xl mx-auto prose prose-invert">
           <p className="text-lg mb-6">
-            Ao acessar o site Micoleão Bolado, você concorda com os termos aqui descritos.
+            Ao acessar o site Mico Leão Bolado™, você concorda com os termos aqui descritos.
             Todo o conteúdo deste site é protegido por direitos autorais e não pode ser reproduzido sem autorização prévia.
           </p>
 
           <div className="bg-white/5 p-6 rounded-lg mb-6">
             <h2 className="text-2xl font-semibold mb-4">Produto e Acesso</h2>
             <p className="text-lg">
-              A compra do produto físico Toy Art Micoleão Bolado dá direito a um item numerado e acesso simbólico à comunidade Jardim Secreto.
+              A compra do produto físico Toy Art Mico Leão Bolado™ dá direito a um item numerado e acesso simbólico à comunidade Jardim Secreto.
               Esse acesso é liberado manualmente após a confirmação de pagamento via OpenPix.
             </p>
           </div>

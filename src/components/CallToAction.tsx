@@ -69,10 +69,10 @@ const CallToAction: React.FC = () => {
     <section className="py-32 bg-black text-white">
       <div className="container mx-auto px-4 text-center">
         <h2 className="text-4xl md:text-6xl font-bold mb-4">
-          Não é apenas um produto.
+        Você não compra um Mico Leão Bolado™.
         </h2>
         <h3 className="text-3xl md:text-5xl font-light text-gray-400 mb-16">
-          É um movimento.
+        Você entra para o movimento.
         </h3>
         <div className="flex justify-center">
           {user ? (

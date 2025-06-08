@@ -65,18 +65,27 @@ const PreSale: React.FC = () => {
           <div className="w-24 h-1 bg-white/30 mx-auto rounded-full"></div>
         </div>
         
-        <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+        <div className="flex justify-center items-center max-w-6xl mx-auto">
           <PreSaleCard 
             title="Fase 1"
             icon={<Flame size={48} className="text-red-500" />}
             price="R$ 1.497"
             benefits={[
-              "+ 2 ingressos VIP"
+              "Cada escultura tem 30cm de atitude e vem numerada, com certificado de autenticidade."
             ]}
-            note="Primeiros 200. Rápido no gatilho."
-            limited="Limitado aos 200 primeiros"
+            note="🔥 Apenas 200 peças."
+            limited="Todas únicas."
             highlight={true}
           />
+          <div className="ml-8 p-6 rounded-lg bg-white/90 backdrop-blur-sm shadow-lg border border-white/30">
+            <p className="text-lg font-semibold mb-4 text-gray-800">Detalhes:</p>
+            <ul className="space-y-3 text-gray-700">
+              <li>🛠️ Produção artesanal</li>
+              <li>🎟️ Inclui 2 ingressos para o evento secreto de lançamento</li>
+              <li>🎁 Embalagem de colecionador</li>
+              <li>📦 Envio para todo o Brasil</li>
+            </ul>
+          </div>
         </div>
       </div>
     </section>

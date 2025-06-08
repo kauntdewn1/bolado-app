@@ -37,7 +37,7 @@ const PoliticaPrivacidade: React.FC = () => {
           <div className="bg-white/5 p-6 rounded-lg mb-8">
             <p className="text-lg">
               Esses dados são utilizados exclusivamente para gerenciar a pré-venda e liberar o acesso à comunidade Jardim Secreto.
-              As informações são armazenadas com segurança via Firebase e não serão compartilhadas com terceiros.
+              As informações são armazenadas com segurança via banco de dados SQL e não serão compartilhadas com terceiros.
             </p>
           </div>
 
