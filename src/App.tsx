@@ -90,7 +90,7 @@ const App: React.FC = () => {
  </Routes>
       </Router>
       {showUrgencyContainer && (
-        <div className="fixed bottom-4 right-4 bg-red-600 text-white p-4 rounded-lg shadow-lg z-50 flex items-start">
+        <div className="fixed bottom-4 right-4 bg-yellow-600 text-white p-4 rounded-lg shadow-lg z-50 flex items-start">
  <div className="flex-grow">
  <p className="font-bold mb-2">🚨 Atenção:</p>
  <p className="text-sm">As primeiras 200 unidades não serão repetidas.</p>

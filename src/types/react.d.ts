@@ -1,5 +1,5 @@
 declare module 'react' {
-  export * from 'react';
+  export * from 'react'; export { MouseEvent } from 'react';
   export const Suspense: React.ComponentType<{ children: React.ReactNode; fallback: React.ReactNode }>;
   export type FC<P = {}> = React.FunctionComponent<P>;
   export const useState: <T>(initialState: T | (() => T)) => [T, (newState: T | ((prevState: T) => T)) => void];
