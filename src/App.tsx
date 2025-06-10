@@ -13,24 +13,32 @@ import PoliticaPrivacidade from './components/PoliticaPrivacidade';
 import PoliticaTrocas from './components/PoliticaTrocas';
 import LandingPage from './components/LandingPage';
 import ProtectedRoute from './components/ProtectedRoute';
+import { HelmetProvider } from 'react-helmet-async';
 
 const App: React.FC = () => {
   const preSaleSectionRef = useRef<HTMLElement | null>(null);
+  const footerRef = useRef<HTMLElement | null>(null);
   const [showUrgencyContainer, setShowUrgencyContainer] = useState(false);
+  const [mainBlur, setMainBlur] = useState(0);
   const lastScrollY = useRef(0);
 
   useEffect(() => {
     const handleScroll = () => {
+      // Blur gradual ao se aproximar do footer
+      if (footerRef.current) {
+        const footerRect = footerRef.current.getBoundingClientRect();
+        const windowHeight = window.innerHeight;
+        // Quando o topo do footer entra na viewport, começa o blur
+        const distance = Math.max(0, windowHeight - footerRect.top);
+        // Blur máximo de 12px, começa a partir de 0px
+        const blurValue = Math.min(distance / 40, 12); // ajuste divisor para suavidade
+        setMainBlur(blurValue);
+      }
       if (preSaleSectionRef.current) {
-        // Ensure preSaleSectionRef.current is not null before accessing offsetTop
         const preSaleElement = preSaleSectionRef.current as HTMLElement;
         const preSaleOffsetTop = preSaleElement.offsetTop;
         const scrollPosition = window.scrollY;
-        // You might want to add a small offset here if the section starts right at the top
-        // const threshold = preSaleOffsetTop - 100;
-
         const isScrollingDown = scrollPosition > lastScrollY.current;
-
         setShowUrgencyContainer(isScrollingDown && scrollPosition >= preSaleOffsetTop);
       }
       lastScrollY.current = window.scrollY;
@@ -52,60 +60,88 @@ const App: React.FC = () => {
   }, [showUrgencyContainer]);
 
   return (
-    <div className="min-h-screen bg-[var(--color-bg)] text-[var(--color-text)] font-body antialiased">
-      <Router>
-        <Routes>
-          <Route path="/" element={<LandingPage />} />
-          <Route
-            path="/app"
-            element={
-              <ProtectedRoute>
+    <HelmetProvider>
+      <div className="min-h-screen bg-[var(--color-bg)] text-[var(--color-text)] font-body antialiased">
+        <Router>
+          <Routes>
+            <Route path="/" element={<LandingPage />} />
+            <Route
+              path="/app"
+              element={
+                <ProtectedRoute>
+                  <>
+                    <Header />
+                    <main className="pt-24" style={{ filter: `blur(${mainBlur}px)`, transition: 'filter 0.3s' }}>
+                      <PreSale />
+                      <Gallery />
+                      <CallToAction />
+                      <ManifestoSection />
+                      <Hero />
+                    </main>
+                    <Footer ref={footerRef} />
+                  </>
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/termos"
+              element={
                 <>
                   <Header />
-                  <section ref={preSaleSectionRef}>
-                    <Hero />
-                    <PreSale />
-                    <ManifestoSection />
-                    <Gallery />
-                    <CallToAction />
-                  </section>
+                  <main className="pt-24">
+                    <Termos />
+                  </main>
                   <Footer />
                 </>
-              </ProtectedRoute>
-            }
-          />
-          <Route
-            path="/termos"
-            element={
+              }
+            />
+            <Route path="/privacidade" element={
               <>
                 <Header />
-                <Termos />
+                <main className="pt-24">
+                  <PoliticaPrivacidade />
+                </main>
                 <Footer />
               </>
-            }
-          />
-          <Route path="/privacidade" element={<><Header /><PoliticaPrivacidade /><Footer /></>} />
-          <Route path="/trocas" element={<><Header /><PoliticaTrocas /><Footer /></>} />
-          <Route path="/Manifesto" element={<><Header /><ManifestoSection /><Footer /></>} />
-        </Routes>
-      </Router>
-      {showUrgencyContainer && (
-        <div className="fixed bottom-4 right-4 bg-yellow-600 text-white p-4 rounded-lg shadow-lg z-50 flex items-start">
-          <div className="flex-grow">
-            <p className="font-bold mb-2">🚨 Atenção:</p>
-            <p className="text-sm">As primeiras 200 unidades não serão repetidas.</p>
-            <p className="text-sm">Depois disso, o Mico some na floresta…</p>
-            <p className="text-sm">e só volta quando quiser.</p>
+            } />
+            <Route path="/trocas" element={
+              <>
+                <Header />
+                <main className="pt-24">
+                  <PoliticaTrocas />
+                </main>
+                <Footer />
+              </>
+            } />
+            <Route path="/Manifesto" element={
+              <>
+                <Header />
+                <main className="pt-24">
+                  <ManifestoSection />
+                </main>
+                <Footer />
+              </>
+            } />
+          </Routes>
+        </Router>
+        {showUrgencyContainer && (
+          <div className="fixed bottom-4 right-4 bg-yellow-600 text-white p-4 rounded-lg shadow-lg z-50 flex items-start">
+            <div className="flex-grow">
+              <p className="font-bold mb-2">🚨 Atenção:</p>
+              <p className="text-sm">As primeiras 200 unidades não serão repetidas.</p>
+              <p className="text-sm">Depois disso, o Mico some na floresta…</p>
+              <p className="text-sm">e só volta quando quiser.</p>
+            </div>
+            <button
+              className="ml-4 text-white font-bold text-lg leading-none hover:text-gray-200 transition-colors duration-200"
+              onClick={() => setShowUrgencyContainer(false)}
+            >
+              X
+            </button>
           </div>
-          <button
-            className="ml-4 text-white font-bold text-lg leading-none hover:text-gray-200 transition-colors duration-200"
-            onClick={() => setShowUrgencyContainer(false)}
-          >
-            X
-          </button>
-        </div>
-      )}
-    </div>
+        )}
+      </div>
+    </HelmetProvider>
   );
 };
 

@@ -3,7 +3,7 @@ import React from 'react';
 const Hero: React.FC = () => {
   return (
     <>
-      <section className="w-full h-[70vh] flex items-center justify-center relative overflow-hidden">
+      <section className="w-full h-[40vh] flex items-center justify-center relative overflow-hidden">
         {/* Video background */}
         <video
           autoPlay
