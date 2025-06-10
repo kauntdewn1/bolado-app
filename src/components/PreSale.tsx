@@ -67,7 +67,7 @@ const PreSale: React.FC = () => {
         // value: 149700 // This is already defaulted in the API, but you can pass explicitly if needed
       };
 
-      const response = await fetch('/api/OpenPix/create-charge', {
+      const response = await fetch('http://localhost:3001/api/OpenPix/create-charge', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

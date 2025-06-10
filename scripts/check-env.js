@@ -19,7 +19,8 @@ const requiredVars = [
   'VITE_FIREBASE_MESSAGING_SENDER_ID',
   'VITE_FIREBASE_APP_ID',
   'VITE_FIREBASE_TEST_EMAIL',
-  'VITE_FIREBASE_TEST_PASSWORD'
+  'VITE_FIREBASE_TEST_PASSWORD',
+  'OPENPIX_API_KEY'
 ];
 
 // Verifica se todas as variáveis necessárias estão definidas
