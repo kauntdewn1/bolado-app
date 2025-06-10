@@ -1,13 +1,16 @@
 import React from 'react';
 import { getAuth, signInWithPopup } from 'firebase/auth';
 import { provider } from '../lib/firebase';
+import { useNavigate } from 'react-router-dom';
 
 const NavBarMinimal: React.FC = () => {
+  const navigate = useNavigate();
 
   const handleSignIn = async () => {
     const auth = getAuth();
     try {
       await signInWithPopup(auth, provider);
+      navigate('/app'); // Redireciona para a página principal após o login
     } catch (error) {
       console.error("Error signing in with Google:", error);
     }

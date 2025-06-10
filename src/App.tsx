@@ -12,7 +12,7 @@ import Termos from './components/Termos';
 import PoliticaPrivacidade from './components/PoliticaPrivacidade';
 import PoliticaTrocas from './components/PoliticaTrocas';
 import LandingPage from './components/LandingPage';
-
+import ProtectedRoute from './components/ProtectedRoute';
 
 const App: React.FC = () => {
   const preSaleSectionRef = useRef<HTMLElement | null>(null);
@@ -54,50 +54,50 @@ const App: React.FC = () => {
   return (
     <div className="min-h-screen bg-[var(--color-bg)] text-[var(--color-text)] font-body antialiased">
       <Router>
- <Routes>
- <Route path="/" element={<LandingPage />} />
- <Route
+        <Routes>
+          <Route path="/" element={<LandingPage />} />
+          <Route
             path="/app"
             element={
-              <>
- <Header />
- <section ref={preSaleSectionRef}>
-                  {/* Apply ref here */}
-                  {/* You might want to pass the ref down to PreSale if needed for scroll logic */}
- <Hero /> {/* Moved Hero here */}
- <PreSale />
- <ManifestoSection />
- <Gallery />
- <CallToAction />
- </section>
- <Footer /> {/* Add Footer here */}
-              </>
+              <ProtectedRoute>
+                <>
+                  <Header />
+                  <section ref={preSaleSectionRef}>
+                    <Hero />
+                    <PreSale />
+                    <ManifestoSection />
+                    <Gallery />
+                    <CallToAction />
+                  </section>
+                  <Footer />
+                </>
+              </ProtectedRoute>
             }
           />
- <Route
+          <Route
             path="/termos"
             element={
               <>
- <Header />
- <Termos />
- <Footer /> {/* Add Footer here */}
+                <Header />
+                <Termos />
+                <Footer />
               </>
             }
           />
-          <Route path="/privacidade" element={<><Header /><PoliticaPrivacidade /><Footer /></>} /> {/* Add Footer here */}
-          <Route path="/trocas" element={<><Header /><PoliticaTrocas /><Footer /></>} /> {/* Add Footer here */}
-          <Route path="/Manifesto" element={<><Header /><ManifestoSection /><Footer /></>} /> {/* Add Footer here */}
- </Routes>
+          <Route path="/privacidade" element={<><Header /><PoliticaPrivacidade /><Footer /></>} />
+          <Route path="/trocas" element={<><Header /><PoliticaTrocas /><Footer /></>} />
+          <Route path="/Manifesto" element={<><Header /><ManifestoSection /><Footer /></>} />
+        </Routes>
       </Router>
       {showUrgencyContainer && (
         <div className="fixed bottom-4 right-4 bg-yellow-600 text-white p-4 rounded-lg shadow-lg z-50 flex items-start">
- <div className="flex-grow">
- <p className="font-bold mb-2">🚨 Atenção:</p>
- <p className="text-sm">As primeiras 200 unidades não serão repetidas.</p>
- <p className="text-sm">Depois disso, o Mico some na floresta…</p>
- <p className="text-sm">e só volta quando quiser.</p>
- </div>
- <button
+          <div className="flex-grow">
+            <p className="font-bold mb-2">🚨 Atenção:</p>
+            <p className="text-sm">As primeiras 200 unidades não serão repetidas.</p>
+            <p className="text-sm">Depois disso, o Mico some na floresta…</p>
+            <p className="text-sm">e só volta quando quiser.</p>
+          </div>
+          <button
             className="ml-4 text-white font-bold text-lg leading-none hover:text-gray-200 transition-colors duration-200"
             onClick={() => setShowUrgencyContainer(false)}
           >
