@@ -1,8 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import { Menu } from 'lucide-react';
 
 const Header: React.FC = () => {
-  const [mobileMenuOpen, setMobileMenuOpen] = React.useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
 
   useEffect(() => {

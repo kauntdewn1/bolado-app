@@ -78,6 +78,68 @@ src/
 4. Push para a branch (`git push origin feature/AmazingFeature`)
 5. Abra um Pull Request
 
+Sim! Para remover o React, apagar o cache e instalar novamente, siga estes passos no terminal:
+
+---
+
+### 1. Remover React e dependências relacionadas
+
+Se usa **yarn**:
+```sh
+yarn remove react react-dom
+```
+Se usa **npm**:
+```sh
+npm uninstall react react-dom
+```
+
+---
+
+### 2. Apagar cache
+
+**Yarn:**
+
+```sh
+yarn cache clean
+```
+
+**npm:**
+
+```sh
+npm cache clean --force
+```
+
+---
+
+### 3. Remover node_modules e lockfile
+
+```sh
+rm -rf node_modules yarn.lock package-lock.json
+```
+
+---
+
+### 4. Instalar novamente as dependências
+
+**Yarn:**
+
+```sh
+yarn install
+yarn add react react-dom
+```
+
+---
+
+### 5. (Opcional) Verifique a versão instalada
+
+```sh
+yarn list react
+```
+
+---
+
+ Isso garante uma instalação limpa do React e resolve muitos problemas de cache e dependências corrompidas. Se der algum erro, envie a mensagem aqui!
+
 ## 📄 Licença
 
 Este projeto está sob a licença MIT. Veja o arquivo [LICENSE](LICENSE) para mais detalhes.

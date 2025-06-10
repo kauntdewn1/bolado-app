@@ -13,7 +13,6 @@ import PoliticaPrivacidade from './components/PoliticaPrivacidade';
 import PoliticaTrocas from './components/PoliticaTrocas';
 import LandingPage from './components/LandingPage';
 import ProtectedRoute from './components/ProtectedRoute';
-import { HelmetProvider } from 'react-helmet-async';
 
 const App: React.FC = () => {
   const preSaleSectionRef = useRef<HTMLElement | null>(null);
@@ -58,13 +57,11 @@ const App: React.FC = () => {
       if (timer !== null) clearTimeout(timer);
     };
   }, [showUrgencyContainer]);
-
   return (
-    <HelmetProvider>
-      <div className="min-h-screen bg-[var(--color-bg)] text-[var(--color-text)] font-body antialiased">
-        <Router>
-          <Routes>
-            <Route path="/" element={<LandingPage />} />
+    <div className="min-h-screen bg-[var(--color-bg)] text-[var(--color-text)] font-body antialiased">
+      <Router>
+        <Routes>
+          <Route path="/" element={<LandingPage />} />
             <Route
               path="/app"
               element={
@@ -141,7 +138,6 @@ const App: React.FC = () => {
           </div>
         )}
       </div>
-    </HelmetProvider>
   );
 };
 
