@@ -56,36 +56,31 @@ const PreSaleCard = ({
   );
 };
 
+const API_URL = import.meta.env.VITE_API_URL;
+
 const PreSale: React.FC = () => {
   const handlePurchaseClick = async () => {
     try {
-      // You might want to get email and name from user authentication state or a form
-      // For now, using dummy data or potentially getting user from auth context if available
-      const dummyUserData = {
-        email: 'test@example.com', // Replace with actual user email
-        nome: 'Test User', // Replace with actual user name
-        // value: 149700 // This is already defaulted in the API, but you can pass explicitly if needed
-      };
-
-      const response = await fetch('http://localhost:3001/api/OpenPix/create-charge', {
+      const res = await fetch(`${API_URL}/OpenPix/create-charge`, {
         method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(dummyUserData),
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ nome: 'Test User', email: 'test@example.com' }) // ajuste para pegar dados reais se necessário
       });
 
-      const data = await response.json();
+      const data = await res.json();
 
-      if (response.ok && data.paymentLinkUrl) {
-        window.location.href = data.paymentLinkUrl; // Redirect to OpenPix payment page
-      } else {
-        console.error('Failed to create charge:', data);
-        alert('Não foi possível gerar a cobrança. Tente novamente.'); // Basic error handling
+      if (!res.ok) {
+        throw new Error(data.mensagem || 'Erro desconhecido');
       }
-    } catch (error) {
-      console.error('Error during purchase process:', error);
-      alert('Ocorreu um erro. Tente novamente.'); // Basic error handling
+
+      // Sucesso
+      console.log('Cobrança criada:', data);
+      if (data.paymentLinkUrl) {
+        window.location.href = data.paymentLinkUrl;
+      }
+    } catch (err) {
+      const error = err instanceof Error ? err : new Error(String(err));
+      alert(`Erro: ${error.message}`);
     }
   };
 
