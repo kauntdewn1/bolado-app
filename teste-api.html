@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<body>
+  <button onclick="chamar()">Testar Compra</button>
+  <script>
+    async function chamar() {
+      const res = await fetch('http://localhost:8000/api/OpenPix/create-charge', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ nome: "MELLØ", email: "mello@flow.xyz" })
+      });
+
+      const contentType = res.headers.get("content-type");
+      const data = contentType.includes("application/json")
+        ? await res.json()
+        : await res.text();
+
+      console.log("Resposta:", data);
+    }
+  </script>
+</body>
+</html>

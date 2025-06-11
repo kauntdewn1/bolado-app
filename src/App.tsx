@@ -75,7 +75,7 @@ const App: React.FC = () => {
                       <ManifestoSection />
                       <Hero />
                     </main>
-                    <Footer ref={footerRef} />
+                    <Footer />
                   </>
                 </ProtectedRoute>
               }

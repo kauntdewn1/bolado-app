@@ -72,3 +72,43 @@ img {
 a {
   @apply underline underline-offset-4 text-[var(--color-accent)] hover:opacity-80 transition;
 }
+
+@keyframes chromatic-blur-up {
+  0% {
+    filter: blur(0px);
+    transform: translateY(0);
+    box-shadow: none;
+  }
+  60% {
+    filter: blur(8px) brightness(1.2);
+    transform: translateY(-40px) scale(1.03);
+    box-shadow: 0 0 0 0 transparent;
+  }
+  80% {
+    filter: blur(16px) brightness(1.4);
+    transform: translateY(-80px) scale(1.06);
+    box-shadow: 0 0 40px 10px #ff00cc, 0 0 40px 10px #00ffea;
+  }
+  100% {
+    filter: blur(32px) brightness(1.6);
+    transform: translateY(-120px) scale(1.1);
+    box-shadow: 0 0 80px 20px #ff00cc, 0 0 80px 20px #00ffea;
+    opacity: 0;
+  }
+}
+
+.animate-chromatic-blur-up {
+  animation: chromatic-blur-up 0.9s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+body.modal-open {
+  overflow: hidden;
+}
+
+button {
+  transition: all 0.3s ease-in-out;
+}
+
+.modal-backdrop {
+  backdrop-filter: blur(8px);
+}

@@ -41,3 +41,10 @@ requiredVars.forEach(varName => {
     : value;
   console.log(`   ${varName}: ${maskedValue}`);
 }); 
+
+const handleGarantir = async () => {
+  console.log('User:', user);
+  console.log('Abrindo modal...');
+  // ...restante do código
+  setShowModal(true);
+}; 

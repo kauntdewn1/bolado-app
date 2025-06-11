@@ -48,6 +48,16 @@ app.post('/api/OpenPix/create-charge', async (req, res, next) => {
       );
     }
 
+    // Validação de email
+    if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+      throwApiError({
+        mensagem: 'Email inválido',
+        codigo: 'EMAIL_INVALIDO',
+        detalhe: `O email enviado foi: ${email}`,
+        status: 400
+      });
+    }
+
     const payload = {
       correlationID: `pedido-${Date.now()}`,
       value,
@@ -61,7 +71,7 @@ app.post('/api/OpenPix/create-charge', async (req, res, next) => {
 
     console.log('Payload enviado para OpenPix:', payload);
 
-    const response = await fetch('https://api.openpix.com.br/api/openpix/charge', {
+    const response = await fetch('https://micoleao-app.web.app/api/OpenPix/create-charge', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -70,7 +80,28 @@ app.post('/api/OpenPix/create-charge', async (req, res, next) => {
       body: JSON.stringify(payload)
     });
 
-    console.log('Status da resposta OpenPix:', response.status);
+    const contentType = response.headers.get('content-type');
+    if (!contentType || !contentType.includes('application/json')) {
+      const erroTexto = await response.text();
+      throwApiError({
+        mensagem: 'Resposta não veio como JSON',
+        codigo: 'RESPOSTA_INVALIDA',
+        detalhe: erroTexto,
+        status: 502
+      });
+    }
+
+    if (!response.ok) {
+      const erro = await response.json();
+      console.error('Erro OpenPix:', erro);
+      throwApiError({
+        mensagem: 'Erro na API da OpenPix',
+        codigo: 'OPENPIX_ERRO',
+        detalhe: JSON.stringify(erro),
+        status: response.status
+      });
+    }
+
     const data = await response.json();
     console.log('Resposta da OpenPix:', data);
 
@@ -82,6 +113,9 @@ app.post('/api/OpenPix/create-charge', async (req, res, next) => {
         500
       );
     }
+
+    console.log("Resposta:", data);
+    alert(typeof data === 'string' ? data : JSON.stringify(data, null, 2));
 
     return res.status(200).json(data);
   } catch (error) {
