@@ -143,3 +143,43 @@ yarn list react
 ## 📄 Licença
 
 Este projeto está sob a licença MIT. Veja o arquivo [LICENSE](LICENSE) para mais detalhes.
+
+## 🔥 Cloud Functions
+
+Para instalar dependências e fazer deploy das funções backend:
+
+```sh
+cd functions
+npm install
+firebase deploy --only functions
+```
+
+Se alterar variáveis de ambiente, rode:
+
+```sh
+firebase deploy --only functions
+```
+
+## 🚀 Como enviar o projeto para o GitHub
+
+1. Crie um repositório no GitHub (https://github.com/new)
+2. No terminal, dentro da pasta do projeto, rode:
+
+```sh
+git init
+git add .
+git commit -m "Primeiro commit"
+git branch -M main
+git remote add origin https://github.com/SEU_USUARIO/SEU_REPOSITORIO.git
+git push -u origin main
+```
+
+Troque `SEU_USUARIO` e `SEU_REPOSITORIO` pelo seu usuário e nome do repositório no GitHub.
+
+Se já existe um repositório e você só quer enviar novas alterações:
+
+```sh
+git add .
+git commit -m "Descreva sua alteração"
+git push
+```

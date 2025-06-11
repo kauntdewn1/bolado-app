@@ -61,7 +61,7 @@ type-check:
 	$(YARN) type-check
 
 # Comandos de Deploy
-.PHONY: deploy deploy-hosting deploy-rules
+.PHONY: deploy deploy-hosting deploy-rules deploy-functions
 
 deploy:
 	@echo "$(GREEN)Fazendo deploy completo...$(NC)"
@@ -74,6 +74,9 @@ deploy-hosting:
 deploy-rules:
 	@echo "$(GREEN)Fazendo deploy das regras do Firestore...$(NC)"
 	$(YARN) deploy:rules
+
+deploy-functions:
+	cd functions && npm install && firebase deploy --only functions
 
 # Comandos de Instalação
 .PHONY: install prepare
@@ -112,6 +115,7 @@ help:
 	@echo "  make deploy       - Faz deploy completo"
 	@echo "  make deploy-hosting - Faz deploy do hosting"
 	@echo "  make deploy-rules - Faz deploy das regras do Firestore"
+	@echo "  make deploy-functions - Faz deploy das funções backend"
 	@echo ""
 	@echo "$(YELLOW)Instalação:$(NC)"
 	@echo "  make install      - Instala dependências"

@@ -12,18 +12,21 @@ const express = require('express');
 const cors = require('cors');
 const fetch = require('node-fetch');
 
-const app = express();
-app.use(cors({ origin: true }));
-app.use(express.json());
+const appProd = express();
+appProd.use(cors({ origin: true }));
+appProd.use(express.json());
 
-app.post('/api/OpenPix/create-charge', async (req, res) => {
-  const openpixKey = functions.config().openpix.key;
+const apiKey = process.env.APP_API_KEY;
+const openpixClientId = process.env.OPENPIX_CLIENT_ID;
+
+appProd.post('/api/OpenPix/create-charge', async (req, res) => {
+  const openpixKey = process.env.OPENPIX_KEY;
   if (!openpixKey) {
     return res.status(500).json({
       sucesso: false,
       mensagem: 'Chave OpenPix não configurada.',
       codigo: 'OPENPIX_API_KEY_NAO_DEFINIDA',
-      detalhe: 'Configure com firebase functions:config:set openpix.key="SUA_CHAVE"'
+      detalhe: 'Configure a variável de ambiente OPENPIX_KEY.'
     });
   }
 
@@ -73,4 +76,17 @@ app.post('/api/OpenPix/create-charge', async (req, res) => {
   }
 });
 
-exports.api = functions.https.onRequest(app);
+// Backend em desenvolvimento (pode evoluir à vontade)
+const appDev = express();
+appDev.use(cors({ origin: true }));
+appDev.use(express.json());
+
+// Exemplo de rota inicial (pode evoluir sem medo)
+appDev.get('/apiDev/ping', (req, res) => {
+  res.json({ status: 'ok', ambiente: 'dev' });
+});
+
+// Copie aqui as rotas que quiser evoluir/testar no backend dev
+
+exports.api = functions.https.onRequest(appProd);
+exports.apiDev = functions.https.onRequest(appDev);

@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from 'react';
+// import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { Flame, Eye, EyeOff, Copy, Check } from 'lucide-react';
 
 interface PreSaleCardProps {
@@ -57,10 +58,10 @@ const PreSaleCard = ({
 };
 
 const PreSale: React.FC = () => {
-  const [user, setUser] = useState<any>(null);
-  const [shippingAddress, setShippingAddress] = useState('');
-  const [loading, setLoading] = useState(false);
-  const [showModal, setShowModal] = useState(false);
+  //   const [user, setUser] = useState<any>(null);
+  //   const [shippingAddress, setShippingAddress] = useState('');
+  //   const [loading, setLoading] = useState(false);
+  //   const [showModal, setShowModal] = useState(false);
   const [showPayment, setShowPayment] = useState(false);
   const [copied, setCopied] = useState(false);
 
@@ -80,9 +81,9 @@ const PreSale: React.FC = () => {
     setShowPayment(!showPayment);
   };
 
-  useEffect(() => {
-    document.body.classList.toggle('modal-open', showModal);
-  }, [showModal]);
+  // useEffect(() => {
+  //   document.body.classList.toggle('modal-open', showModal);
+  // }, [showModal]);
 
   return (
     <section id="prelaunch" className="py-16 md:py-24 lg:py-32 px-4 md:px-6 has-cool-to-warm-spectrum-gradient-background">
